@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>github-repository demos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://nutmeg.tools/favicon.png">
+
+  <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-sd-ce.js"></script>
+
+  <!-- Use `npm run serve` to start a development server. -->
+
+  <style>
+    body {
+      background-color: #eee;
+      padding: 24px;
+    }
+
+    github-repository {
+      margin: 8px;
+    }
+
+    github-repository.blue {
+      --github-repository-background-color: #03A9F4;
+    }
+  </style>
+</head>
+<body>
+  <github-repository></github-repository>
+
+  <github-repository owner-repo="Pickle"></github-repository>
+
+  <github-repository>Slot content</github-repository>
+
+  <github-repository class="blue"></github-repository>
+
+  <script>
+    /** Set complex properties */
+    // document.querySelector('github-repository').foo = ['bar'];
+  </script>
+
+  <!-- In development `github-repository.bundled.js` will automatically be loaded. -->
+</body>
+</html>
