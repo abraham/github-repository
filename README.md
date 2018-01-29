@@ -1,6 +1,12 @@
 &lt;github-repository&gt;
 ====
 
+[![Version Status](https://img.shields.io/npm/v/github-repository.svg?style=flat&label=version&colorB=4bc524)](https://npmjs.com/package/github-repository)
+[![macOS Build Status](https://img.shields.io/circleci/project/github/abraham/github-repository.svg?style=flat&label=macos)](https://circleci.com/gh/abraham/github-repository)
+[![Linux Build Status](https://img.shields.io/travis/abraham/github-repository.svg?style=flat&label=linux)](https://travis-ci.org/abraham/github-repository)
+[![Windows Build Status](https://img.shields.io/appveyor/ci/abraham/github-repository.svg?style=flat&label=windows)](https://ci.appveyor.com/project/abraham/github-repository)
+[![Dependency Status](https://david-dm.org/abraham/github-repository.svg?style=flat)](https://david-dm.org/abraham/github-repository)
+
 Install
 ----
 
