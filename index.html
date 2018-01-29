@@ -19,25 +19,26 @@
     github-repository {
       margin: 8px;
     }
-
-    github-repository.blue {
-      --github-repository-background-color: #03A9F4;
-    }
   </style>
 </head>
 <body>
+  <github-repository owner-repo="angular/angular"></github-repository>
+
+  <github-repository owner-repo="abraham/twitter-status">
+    <img slot="images" src="https://raw.githubusercontent.com/abraham/twitter-status/master/images/simple.png" alt="Twitter Status embed preview" />
+    <a slot="badges" href="https://npmjs.com/package/twitter-status" target="_blank"><img src="https://img.shields.io/npm/v/twitter-status.svg?style=flat&label=version&colorB=4bc524" alt="Version Status" /></a>
+    <a slot="badges" href="https://circleci.com/gh/abraham/twitter-status" target="_blank"><img src="https://img.shields.io/circleci/project/github/abraham/twitter-status.svg?style=flat&label=macos" alt="macOS Build Status" /></a>
+    <a slot="badges" href="https://travis-ci.org/abraham/twitter-status" target="_blank"><img src="https://img.shields.io/travis/abraham/twitter-status.svg?style=flat&label=linux" alt="Linux Build Status" /></a>
+    <a slot="badges" href="https://ci.appveyor.com/project/abraham/twitter-status" target="_blank"><img src="https://img.shields.io/appveyor/ci/abraham/twitter-status.svg?style=flat&label=windows" alt="Windows Build Status" /></a>
+  </github-repository>
+
+  <github-repository owner-repo="vuejs/vue"></github-repository>
+
+  <github-repository owner-repo="abraham/twitteroauth"></github-repository>
+
+  <github-repository owner-repo="abraham/empty"></github-repository>
+
   <github-repository></github-repository>
-
-  <github-repository owner-repo="Pickle"></github-repository>
-
-  <github-repository>Slot content</github-repository>
-
-  <github-repository class="blue"></github-repository>
-
-  <script>
-    /** Set complex properties */
-    // document.querySelector('github-repository').foo = ['bar'];
-  </script>
 
   <!-- In development `github-repository.bundled.js` will automatically be loaded. -->
 </body>
