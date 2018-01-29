@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@nutmeg/seed": "0.6.0",
-    "lit-html": "^0.8.0",
-    "numeral": "^2.0.6"
+    "lit-html": "0.8.0",
+    "numeral": "2.0.6"
   },
   "devDependencies": {
     "@nutmeg/cli": "0.10.4",
