@@ -1,7 +1,7 @@
 {
   "name": "github-repository",
-  "version": "0.1.1",
-  "description": "Generated Nutmeg Web Component",
+  "version": "0.1.2",
+  "description": "GitHub Repository Web Component",
   "main": "dist/github-repository.js",
   "module": "dist/github-repository.js",
   "unpkg": "dist/github-repository.min.js",
@@ -9,14 +9,24 @@
   "directories": {
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abraham/github-repository.git"
+  },
   "engines": {
     "node": ">=8.0.0"
   },
   "keywords": [
     "github-repository",
-    "nutmeg"
+    "github",
+    "nutmeg",
+    "web-component"
   ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abraham/github-repository/issues"
+  },
+  "homepage": "https://github.com/abraham/github-repository",
   "scripts": {
     "build": "npx nutmeg build .",
     "prebuild": "npx nutmeg clean .",
