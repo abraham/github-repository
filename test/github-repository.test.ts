@@ -138,6 +138,30 @@ describe('<github-repository>', () => {
       expect((window.fetch as sinon.SinonSpy).calledOnce).to.be.true;
     });
 
+    describe('with error response', () => {
+      beforeEach(async () => {
+        stub.restore();
+        const realFetch = window.fetch;
+        stub = sinon.stub(window, 'fetch').callsFake(async () => {
+          const error = await realFetch(`./base/test/data/error.json`);
+          return new Response(await error.text(), { status: 403, statusText: 'Forbidden' })
+        });
+        component = fixture('<github-repository owner-repo="abraham/twitter-status"></github-repository>');
+        await sleep(TIMEOUT);
+      });
+
+      afterEach(() => {
+        stub.restore();
+      });
+
+      it('renders error', () => {
+        expect(component.$('#error')).to.exist;
+        const text = `Error getting abraham/twitter-status details from from GitHub:
+"API rate limit exceeded for 71.90.116.85. (But here\'s the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)"`;
+        expect(component.$('#error').innerText).to.eq(text);
+      });
+    });
+
     describe('with recent cache', () => {
       beforeEach(async () => {
         const data = await fetch('https://api.github.com/repos/abraham/twitter-status');
