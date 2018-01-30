@@ -10,6 +10,7 @@ export class GithubRepository extends Seed {
 
   private repo: Repo;
   private cache: Cache;
+  private error: string;
 
   constructor() {
     super();
@@ -46,8 +47,12 @@ export class GithubRepository extends Seed {
   private async getRepository(ownerRepo: string): Promise<void> {
     const response = await fetch(`https://api.github.com/repos/${ownerRepo}`);
     const data = await response.json();
-    this.repo = new Repo(data);
-    this.cache.data = data;
+    if (response.status === 200) {
+      this.repo = new Repo(data);
+      this.cache.data = data;
+    } else {
+      this.error = data.message;
+    }
     this.render();
   }
 
@@ -383,25 +388,40 @@ export class GithubRepository extends Seed {
     `;
   }
 
-  /** HTML Template for the component. */
-  public get template(): TemplateResult {
-    if (!this.repo) {
-      return html`
-        <div id="loader" class="content">
-          <div class="loader-item">
-            <div class="animated-background">
-              <div class="background-masker header-top"></div>
-              <div class="background-masker header-right"></div>
-              <div class="background-masker content-top"></div>
-              <div class="background-masker content-first-end"></div>
-              <div class="background-masker content-second-line"></div>
-              <div class="background-masker content-second-end"></div>
-              <div class="background-masker content-third-line"></div>
-              <div class="background-masker content-third-end"></div>
-            </div>
+  private get errorTemplate(): TemplateResult {
+    return html`
+      <div id="error" class="content">
+        <div class="row"><span>Error getting <a href="https://github.com/${this.ownerRepo}" target="_blank">${this.ownerRepo}</a> details from from GitHub:<span></div>
+        <div class="row">"${this.error}"</div>
+      </div>
+    `;
+  }
+
+  private get loadingTemplate(): TemplateResult {
+    return html`
+      <div id="loader" class="content">
+        <div class="loader-item">
+          <div class="animated-background">
+            <div class="background-masker header-top"></div>
+            <div class="background-masker header-right"></div>
+            <div class="background-masker content-top"></div>
+            <div class="background-masker content-first-end"></div>
+            <div class="background-masker content-second-line"></div>
+            <div class="background-masker content-second-end"></div>
+            <div class="background-masker content-third-line"></div>
+            <div class="background-masker content-third-end"></div>
           </div>
         </div>
-      `;
+      </div>
+    `;
+  }
+
+  /** HTML Template for the component. */
+  public get template(): TemplateResult {
+    if (this.error) {
+      return this.errorTemplate;
+    } else if (!this.repo) {
+      return this.loadingTemplate;
     } else {
       return html`
         <div class="content">
