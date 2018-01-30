@@ -4,6 +4,9 @@ import * as sinon from 'sinon';
 
 import { GithubRepository } from '../src/github-repository';
 
+// Increase timeout for AppVeyor
+const TIMEOUT = 500;
+
 describe('<github-repository>', () => {
   let component: GithubRepository;
   let stub: sinon.SinonStub;
@@ -36,7 +39,7 @@ describe('<github-repository>', () => {
   describe('with owner-repo', () => {
     beforeEach(async () => {
       component = fixture('<github-repository owner-repo="abraham/twitter-status"></github-repository>');
-      await sleep(25);
+      await sleep(TIMEOUT);
     });
 
     it('renders the header', () => {
@@ -83,7 +86,7 @@ describe('<github-repository>', () => {
   describe('with owner-repo for an empty project', () => {
     beforeEach(async () => {
       component = fixture('<github-repository owner-repo="abraham/empty"></github-repository>');
-      await sleep(25);
+      await sleep(TIMEOUT);
     });
 
     it('renders the header', () => {
@@ -170,8 +173,8 @@ describe('<github-repository>', () => {
         expect((window.fetch as sinon.SinonSpy).calledOnce).to.be.true;
         setTimeout(() => {
           const cache = JSON.parse(window.localStorage.getItem('github-repository_abraham/twitter-status_cache'));
-          expect(cache.cachedAt).to.be.within(Date.now() - 100, Date.now() + 100);
-        }, 25);
+          expect(cache.cachedAt).to.be.within(Date.now() - 1000, Date.now() + 1000);
+        }, TIMEOUT);
       });
     });
   });
@@ -186,7 +189,7 @@ describe('<github-repository>', () => {
           <a slot="badges" href="https://circleci.com/gh/abraham/twitter-status" target="_blank"><img src="https://img.shields.io/circleci/project/github/abraham/twitter-status.svg?style=flat&label=macos" alt="macOS Build Status" /></a>
         </github-repository>
       `);
-      await sleep(25);
+      await sleep(TIMEOUT);
     });
 
     it('badges are rendered', () => {
