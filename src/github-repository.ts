@@ -1,5 +1,4 @@
-import { Seed, Property, html, TemplateResult } from '@nutmeg/seed';
-import { svg } from 'lit-html';
+import { Seed, Property, html, svg, TemplateResult } from '@nutmeg/seed';
 import * as numeral from 'numeral';
 
 import { Cache } from './cache';

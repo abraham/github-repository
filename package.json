@@ -37,8 +37,7 @@
     "watch": "npx nutmeg watch ."
   },
   "dependencies": {
-    "@nutmeg/seed": "0.7.0",
-    "lit-html": "0.8.0",
+    "@nutmeg/seed": "0.8.1",
     "numeral": "2.0.6"
   },
   "devDependencies": {
