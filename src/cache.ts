@@ -23,7 +23,11 @@ export class Cache {
   }
 
   public get expired(): boolean {
-    return !this.cache.data || this.cache.cachedAt < Date.now() - this.CACHE_LENGTH;
+    return this.cachedAt < Date.now() - this.CACHE_LENGTH;
+  }
+
+  private get cachedAt(): number {
+    return this.cache.cachedAt || Date.now();
   }
 
   private get cache(): RepoCache {

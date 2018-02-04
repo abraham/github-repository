@@ -7,7 +7,7 @@ import { Repo, RepoData } from './repo';
 export class GithubRepository extends Seed {
   @Property() public ownerRepo: string;
 
-  private repo: Repo;
+  private _repo: Repo;
   private cache: Cache;
   private error: string;
   private pending = false;
@@ -20,7 +20,6 @@ export class GithubRepository extends Seed {
   /** The component instance has been inserted into the DOM. */
   public connectedCallback() {
     super.connectedCallback();
-    this.setRepo();
   }
 
   /** The component instance has been removed from the DOM. */
@@ -38,28 +37,25 @@ export class GithubRepository extends Seed {
     super.attributeChangedCallback(name, oldValue, newValue);
   }
 
-  private get updateRepo(): boolean {
-    return (!!this.ownerRepo && !this.repo) ||
-      (!!this.ownerRepo && this.repo && (this.cache.expired || this.ownerRepo !== this.repo.fullName));
-  }
-
-  private async setRepo(): Promise<void> {
-    if (this.cache.data && !this.repo) {
-      this.repo = new Repo(this.cache.data);
-      this.render();
+  private get repo(): Repo {
+    if (!this._repo && this.cache.data || (this.cache.data && this.ownerRepo !== this._repo.fullName)) {
+      this._repo = new Repo(this.cache.data);
     }
-    if(this.updateRepo) {
-      await this.fetchRepository();
+    if (!this._repo || this.cache.expired || this.ownerRepo !== this._repo.fullName) {
+      this.fetchRepository();
     }
+    return this._repo;
   }
 
   private async fetchRepository(): Promise<void> {
-    if (this.pending) { return; }
+    if (this.pending || !this.ownerRepo) {
+      return;
+    }
     this.pending = true;
     const response = await fetch(`https://api.github.com/repos/${this.ownerRepo}`);
     const data = await response.json();
     if (response.status === 200) {
-      this.repo = new Repo(data);
+      this._repo = new Repo(data);
       this.cache.data = data;
     } else {
       this.error = data.message;
@@ -446,7 +442,6 @@ export class GithubRepository extends Seed {
 
   /** HTML Template for the component. */
   public get template(): TemplateResult {
-    this.setRepo();
     if (this.error) {
       return this.errorTemplate;
     } else if (!this.repo) {
