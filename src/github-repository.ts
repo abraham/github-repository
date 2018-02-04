@@ -49,11 +49,11 @@ export class GithubRepository extends Seed {
       this.render();
     }
     if(this.updateRepo) {
-      await this.getRepository();
+      await this.fetchRepository();
     }
   }
 
-  private async getRepository(): Promise<void> {
+  private async fetchRepository(): Promise<void> {
     if (this.pending) { return; }
     this.pending = true;
     const response = await fetch(`https://api.github.com/repos/${this.ownerRepo}`);
