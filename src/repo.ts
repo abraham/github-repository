@@ -40,7 +40,7 @@ export class Repo {
 
   public get displayUpdatedAt(): string {
     const month = this.months[this.updatedAt.getMonth()];
-    return `${this.updatedAt.getDate()} ${month} ${this.updatedAt.getFullYear()}`;
+    return `${month} ${this.updatedAt.getDate()} ${this.updatedYear}`;
   }
 
   public get homepage(): string {
@@ -81,6 +81,10 @@ export class Repo {
 
   public get displayLicense(): string {
     return this.license.name;
+  }
+
+  private get updatedYear(): string {
+    return (new Date()).getFullYear() === this.updatedAt.getFullYear() ? '' : `${this.updatedAt.getFullYear()}`;
   }
 }
 

@@ -79,7 +79,7 @@ describe('<github-repository>', () => {
       expect(links.length).to.eq(3);
       expect(links[0].innerText).to.include('TypeScript');
       expect(links[1].innerText).to.include('MIT License');
-      expect(links[2].innerText).to.include('Updated 27 Jan 2018');
+      expect(links[2].innerText).to.include('Updated Jan 27');
     });
   });
 
@@ -126,7 +126,7 @@ describe('<github-repository>', () => {
       expect(links.length).to.eq(3);
       expect(links[0].innerText).to.include('Unknown language');
       expect(links[1].innerText).to.include('Unknown license');
-      expect(links[2].innerText).to.include('Updated 28 Jan 2018');
+      expect(links[2].innerText).to.include('Updated Jan 28 2017');
     });
   });
 
