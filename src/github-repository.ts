@@ -10,6 +10,7 @@ export class GithubRepository extends Seed {
   private repo: Repo;
   private cache: Cache;
   private error: string;
+  private pending = false;
 
   constructor() {
     super();
@@ -19,13 +20,7 @@ export class GithubRepository extends Seed {
   /** The component instance has been inserted into the DOM. */
   public connectedCallback() {
     super.connectedCallback();
-    if (this.cache.data) {
-      this.repo = new Repo(this.cache.data);
-      this.render();
-    }
-    if(this.cache.expired) {
-      this.ownerRepo && this.getRepository(this.ownerRepo);
-    }
+    this.setRepo();
   }
 
   /** The component instance has been removed from the DOM. */
@@ -43,8 +38,25 @@ export class GithubRepository extends Seed {
     super.attributeChangedCallback(name, oldValue, newValue);
   }
 
-  private async getRepository(ownerRepo: string): Promise<void> {
-    const response = await fetch(`https://api.github.com/repos/${ownerRepo}`);
+  private get updateRepo(): boolean {
+    return (!!this.ownerRepo && !this.repo) ||
+      (!!this.ownerRepo && this.repo && (this.cache.expired || this.ownerRepo !== this.repo.fullName));
+  }
+
+  private async setRepo(): Promise<void> {
+    if (this.cache.data && !this.repo) {
+      this.repo = new Repo(this.cache.data);
+      this.render();
+    }
+    if(this.updateRepo) {
+      await this.getRepository();
+    }
+  }
+
+  private async getRepository(): Promise<void> {
+    if (this.pending) { return; }
+    this.pending = true;
+    const response = await fetch(`https://api.github.com/repos/${this.ownerRepo}`);
     const data = await response.json();
     if (response.status === 200) {
       this.repo = new Repo(data);
@@ -52,6 +64,7 @@ export class GithubRepository extends Seed {
     } else {
       this.error = data.message;
     }
+    this.pending = false;
     this.render();
   }
 
@@ -417,6 +430,7 @@ export class GithubRepository extends Seed {
 
   /** HTML Template for the component. */
   public get template(): TemplateResult {
+    this.setRepo();
     if (this.error) {
       return this.errorTemplate;
     } else if (!this.repo) {
