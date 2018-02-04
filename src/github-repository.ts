@@ -428,6 +428,22 @@ export class GithubRepository extends Seed {
     `;
   }
 
+  private get contentTemplate(): TemplateResult {
+    return html`
+      <div class="content">
+        <slot id="images-slot" name="images"></slot>
+        ${this.headerTemplate}
+        ${this.descriptionTemplate}
+        ${this.countsTemplate}
+        ${this.cloneTemplate}
+        <div id="badges-slot" class="row">
+          <slot class="row" name="badges"></slot>
+        </div>
+        ${this.footerTemplate}
+      </div>
+    `;
+  }
+
   /** HTML Template for the component. */
   public get template(): TemplateResult {
     this.setRepo();
@@ -436,19 +452,7 @@ export class GithubRepository extends Seed {
     } else if (!this.repo) {
       return this.loadingTemplate;
     } else {
-      return html`
-        <div class="content">
-          <slot id="images-slot" name="images"></slot>
-          ${this.headerTemplate}
-          ${this.descriptionTemplate}
-          ${this.countsTemplate}
-          ${this.cloneTemplate}
-          <div id="badges-slot" class="row">
-            <slot class="row" name="badges"></slot>
-          </div>
-          ${this.footerTemplate}
-        </div>
-      `;
+      return this.contentTemplate;
     }
   }
 }
