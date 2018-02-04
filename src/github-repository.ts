@@ -134,6 +134,10 @@ export class GithubRepository extends Seed {
           text-align: center;
         }
 
+        #counters .number {
+          font-size: 20px;
+        }
+
         #badges-slot {
           margin: 0 16px;
           justify-content: start;
@@ -163,8 +167,8 @@ export class GithubRepository extends Seed {
         }
 
         .logo svg {
-          width: 24px;
-          height: 24px;
+          width: 38px;
+          height: 38px;
         }
 
         .language-color {
@@ -365,19 +369,19 @@ export class GithubRepository extends Seed {
       <div id="counters" class="row">
         <a class="item" href="${this.repo.htmlUrl}/watchers" target="_blank">
           <span>${this.watchIcon} Watchers</span>
-          <span>${this.countDisplay(this.repo.watchersCount)}</span>
+          <span class="number">${this.countDisplay(this.repo.watchersCount)}</span>
         </a>
         <a class="item" href="${this.repo.htmlUrl}/stargazers" target="_blank">
           <span>${this.starIcon} Stars</span>
-          <span>${this.countDisplay(this.repo.starsCount)}</span>
+          <span class="number">${this.countDisplay(this.repo.starsCount)}</span>
         </a>
         <a class="item" href="${this.repo.htmlUrl}/network" target="_blank">
           <span>${this.forkIcon} Forks</span>
-          <span>${this.countDisplay(this.repo.forksCount)}</span>
+          <span class="number">${this.countDisplay(this.repo.forksCount)}</span>
         </a>
         <a class="item" href="${this.repo.htmlUrl}/issues" target="_blank">
           <span>${this.issuesIcon} Issues</span>
-          <span>${this.countDisplay(this.repo.openIssuesCount)}</span>
+          <span class="number">${this.countDisplay(this.repo.openIssuesCount)}</span>
         </a>
       </div>
     `;
