@@ -117,6 +117,11 @@ export class GithubRepository extends Seed {
           padding: 0 16px;
           margin: 0;
           background-color: #e0e0e0;
+          overflow: hidden;
+        }
+
+        #counters {
+          overflow: hidden;
         }
 
         #counters svg {
@@ -132,6 +137,7 @@ export class GithubRepository extends Seed {
         #badges-slot {
           margin: 0 16px;
           justify-content: start;
+          overflow: hidden;
         }
 
         #images-slot::slotted(img) {
