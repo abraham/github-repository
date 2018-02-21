@@ -346,10 +346,10 @@ export class GithubRepository extends Seed {
     return html`
       <div id="header" class="row">
         <span class="item">
-          <a href="${this.repo.owner.htmlUrl}" target="_blank">${this.repo.owner.login}</a> /
-          <a href="${this.repo.htmlUrl}" target="_blank">${this.repo.name}</a>
+          <a href="${this.repo.owner.htmlUrl}" target="_blank" rel="noopener">${this.repo.owner.login}</a> /
+          <a href="${this.repo.htmlUrl}" target="_blank" rel="noopener">${this.repo.name}</a>
         </span>
-        <span class="logo item"><a href="https://github.com" target="_blank">${this.logo}</a></span>
+        <span class="logo item"><a href="https://github.com" target="_blank" rel="noopener">${this.logo}</a></span>
       </div>
     `;
   }
@@ -368,7 +368,7 @@ export class GithubRepository extends Seed {
   private get homepageTempate(): TemplateResult {
     return html`
       <span id="homepage">
-        <a href="${this.repo.homepage}">${this.repo.displayHomepage}</a>
+        <a href="${this.repo.homepage}" target="_blank" rel="noopener">${this.repo.displayHomepage}</a>
       </span>
     `;
   }
@@ -384,19 +384,19 @@ export class GithubRepository extends Seed {
   private get countsTemplate(): TemplateResult {
     return html`
       <div id="counters" class="row">
-        <a class="item" href="${this.repo.htmlUrl}/watchers" target="_blank">
+        <a class="item" href="${this.repo.htmlUrl}/watchers" target="_blank" rel="noopener">
           <span>${this.watchIcon} Watchers</span>
           <span class="number">${this.countDisplay(this.repo.watchersCount)}</span>
         </a>
-        <a class="item" href="${this.repo.htmlUrl}/stargazers" target="_blank">
+        <a class="item" href="${this.repo.htmlUrl}/stargazers" target="_blank" rel="noopener">
           <span>${this.starIcon} Stars</span>
           <span class="number">${this.countDisplay(this.repo.starsCount)}</span>
         </a>
-        <a class="item" href="${this.repo.htmlUrl}/network" target="_blank">
+        <a class="item" href="${this.repo.htmlUrl}/network" target="_blank" rel="noopener">
           <span>${this.forkIcon} Forks</span>
           <span class="number">${this.countDisplay(this.repo.forksCount)}</span>
         </a>
-        <a class="item" href="${this.repo.htmlUrl}/issues" target="_blank">
+        <a class="item" href="${this.repo.htmlUrl}/issues" target="_blank" rel="noopener">
           <span>${this.issuesIcon} Issues</span>
           <span class="number">${this.countDisplay(this.repo.openIssuesCount)}</span>
         </a>
@@ -426,7 +426,7 @@ export class GithubRepository extends Seed {
   private get errorTemplate(): TemplateResult {
     return html`
       <div id="error" class="content">
-        <div class="row"><span>Error getting <a href="https://github.com/${this.ownerRepo}" target="_blank">${this.ownerRepo}</a> details from from GitHub:<span></div>
+        <div class="row"><span>Error getting <a href="https://github.com/${this.ownerRepo}" target="_blank" rel="noopener">${this.ownerRepo}</a> details from from GitHub:<span></div>
         <div class="row">"${this.error}"</div>
       </div>
     `;

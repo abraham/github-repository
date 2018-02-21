@@ -139,6 +139,12 @@ describe('<github-repository>', () => {
       expect(links[1].innerText).to.include('Unknown license');
       expect(links[2].innerText).to.include('Updated Jan 28 2017');
     });
+
+    it('renders link decorators', () => {
+      const linksCount = component.$$('a').length;
+      expect(component.$$('a[target="_blank"]').length).to.eq(linksCount);
+      expect(component.$$('a[rel="noopener"]').length).to.eq(linksCount);
+    });
   });
 
   describe('GitHub API', () => {
