@@ -189,6 +189,10 @@ export class GithubRepository extends Seed {
           text-decoration: underline;
         }
 
+        #homepage {
+          margin-left: 8px;
+        }
+
         // loading
 
         #loader {
@@ -352,7 +356,20 @@ export class GithubRepository extends Seed {
 
   private get descriptionTemplate(): TemplateResult {
     return html`
-      <div id="description" class="row">${this.repo.description}</div>
+      <div id="description" class="row">
+        <span>
+          ${this.repo.description}
+          ${this.repo.homepage ? this.homepageTempate : ''}
+        </span>
+      </div>
+    `;
+  }
+
+  private get homepageTempate(): TemplateResult {
+    return html`
+      <span id="homepage">
+        <a href="${this.repo.homepage}">${this.repo.displayHomepage}</a>
+      </span>
     `;
   }
 

@@ -54,7 +54,13 @@ describe('<github-repository>', () => {
     });
 
     it('renders the description', () => {
-      expect(component.$('#description').innerText).to.eq('Twitter Status Web Component');
+      expect(component.$('#description').innerText).to.eq('Twitter Status Web Component npmjs.com/package/twitter-status');
+    });
+
+    it('renders the homepage', () => {
+      const link = component.$('#homepage a') as HTMLAnchorElement;
+      expect(link.href).to.eq('https://www.npmjs.com/package/twitter-status');
+      expect(link.innerText).to.eq('npmjs.com/package/twitter-status');
     });
 
     it('renders the counters', () => {
@@ -102,6 +108,11 @@ describe('<github-repository>', () => {
 
     it('renders the description', () => {
       expect(component.$('#description').innerText).to.eq('');
+    });
+
+
+    it('does not render homepage', () => {
+      expect(component.$('#homepage')).to.be.null;
     });
 
     it('renders the counters', () => {
