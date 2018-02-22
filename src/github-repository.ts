@@ -1,5 +1,5 @@
 import { Seed, Property, html, svg, TemplateResult } from '@nutmeg/seed';
-import * as numeral from 'numeral';
+import approximateNumber from 'approximate-number';
 
 import { Cache } from './cache';
 import { Repo, RepoData } from './repo';
@@ -65,13 +65,7 @@ export class GithubRepository extends Seed {
   }
 
   private countDisplay(count: number): string {
-    if (count < 1000) {
-      return String(count);
-    } else if (count < 100000) {
-      return numeral(count).format('0a');
-    } else {
-      return numeral(count).format('0.00a');
-    }
+    return approximateNumber(count);
   }
 
   /** Styling for the component. */
