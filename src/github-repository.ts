@@ -2,14 +2,14 @@ import { Seed, Property, html, svg, TemplateResult } from '@nutmeg/seed';
 import approximateNumber from 'approximate-number';
 
 import { Cache } from './cache';
-import { Repo, RepoData } from './repo';
+import { EmptyRepo, Repo, RepoData } from './repo';
 
 export class GithubRepository extends Seed {
   @Property() public ownerRepo: string = '';
 
-  private _repo: Repo;
+  private _repo: Repo | EmptyRepo = new EmptyRepo();
   private cache: Cache;
-  private error: string = 'Unkown error';
+  private error: string | undefined;
   private pending = false;
 
   constructor() {
@@ -37,8 +37,8 @@ export class GithubRepository extends Seed {
     super.attributeChangedCallback(name, oldValue, newValue);
   }
 
-  private get repo(): Repo {
-    if (!this._repo && this.cache.data || (this.cache.data && this.ownerRepo !== this._repo.fullName)) {
+  private get repo(): Repo | EmptyRepo {
+    if (this.cache.data && !!this.ownerRepo && this.ownerRepo !== this._repo.fullName) {
       this._repo = new Repo(this.cache.data);
     }
     if (!this._repo || this.cache.expired || this.ownerRepo !== this._repo.fullName) {
@@ -465,10 +465,10 @@ export class GithubRepository extends Seed {
   public get template(): TemplateResult {
     if (this.error) {
       return this.errorTemplate;
-    } else if (!this.repo) {
-      return this.loadingTemplate;
-    } else {
+    } else if (!!this.repo.fullName) {
       return this.contentTemplate;
+    } else {
+      return this.loadingTemplate;
     }
   }
 }
