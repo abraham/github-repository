@@ -10,7 +10,7 @@ export class License {
   }
 }
 
-export class LicenseData {
+export interface LicenseData {
     key: string;
     name: string;
     spdx_id: string;

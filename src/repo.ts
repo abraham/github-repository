@@ -5,13 +5,11 @@ import { License, LicenseData } from './license';
 export class Repo {
   public owner: User;
   private readonly months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  private data: RepoData;
   private license: License;
 
-  constructor(repo: RepoData) {
-    this.data = repo;
-    this.license = new License(repo.license);
-    this.owner = new User(repo.owner);
+  constructor(private data: RepoData) {
+    this.license = new License(data.license);
+    this.owner = new User(data.owner);
   }
 
   public get name(): string {
@@ -88,7 +86,27 @@ export class Repo {
   }
 }
 
-export class RepoData {
+export class EmptyRepo {
+  public id = 0;
+  public fullName = '';
+  public owner = { htmlUrl: '', login: '' };
+  public htmlUrl = '';
+  public name = '';
+  public description = '';
+  public homepage = '';
+  public displayHomepage = '';
+  public sshUrl = '';
+  public watchersCount = 0;
+  public starsCount = 0;
+  public openIssuesCount = 0;
+  public forksCount = 0;
+  public language = '';
+  public languageColor = '';
+  public displayUpdatedAt  = '';
+  public displayLicense = '';
+};
+
+export interface RepoData {
   id: number;
   name: string;
   full_name: string;

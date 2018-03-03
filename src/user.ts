@@ -14,7 +14,7 @@ export class User {
   }
 }
 
-export class UserData {
+export interface UserData {
   login: string;
   id: number;
   avatar_url: string;
