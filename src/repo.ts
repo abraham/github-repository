@@ -88,7 +88,7 @@ export class Repo {
   }
 }
 
-export class RepoData {
+export interface RepoData {
   id: number;
   name: string;
   full_name: string;

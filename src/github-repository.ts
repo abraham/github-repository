@@ -5,11 +5,11 @@ import { Cache } from './cache';
 import { Repo, RepoData } from './repo';
 
 export class GithubRepository extends Seed {
-  @Property() public ownerRepo: string;
+  @Property() public ownerRepo: string = '';
 
   private _repo: Repo;
   private cache: Cache;
-  private error: string;
+  private error: string = 'Unkown error';
   private pending = false;
 
   constructor() {
