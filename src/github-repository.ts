@@ -411,7 +411,7 @@ export class GithubRepository extends Seed {
     return html`
       <div id="footer" class="row">
         <span class="item">${this.languageTemplate}</span>
-        <span class="item">Updated ${this.repo.displayUpdatedAt}</span>
+        <span class="item">Updated ${this.repo.displayPushedAt}</span>
         <span class="item">${this.repo.displayLicense}</span>
       </div>
     `;
