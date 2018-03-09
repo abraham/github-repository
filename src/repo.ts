@@ -32,13 +32,9 @@ export class Repo {
     return this.data.ssh_url;
   }
 
-  public get updatedAt(): Date {
-    return new Date(Date.parse(this.data.updated_at));
-  }
-
-  public get displayUpdatedAt(): string {
-    const month = this.months[this.updatedAt.getMonth()];
-    return `${month} ${this.updatedAt.getDate()} ${this.updatedYear}`;
+  public get displayPushedAt(): string {
+    const month = this.months[this.pushedAt.getMonth()];
+    return `${month} ${this.pushedAt.getDate()} ${this.pushedYear}`;
   }
 
   public get homepage(): string {
@@ -81,8 +77,12 @@ export class Repo {
     return this.license.name;
   }
 
-  private get updatedYear(): string {
-    return (new Date()).getFullYear() === this.updatedAt.getFullYear() ? '' : `${this.updatedAt.getFullYear()}`;
+  private get pushedAt(): Date {
+    return new Date(Date.parse(this.data.pushed_at));
+  }
+
+  private get pushedYear(): string {
+    return (new Date()).getFullYear() === this.pushedAt.getFullYear() ? '' : `${this.pushedAt.getFullYear()}`;
   }
 }
 
@@ -102,7 +102,7 @@ export class EmptyRepo {
   public forksCount = 0;
   public language = '';
   public languageColor = '';
-  public displayUpdatedAt  = '';
+  public displayPushedAt  = '';
   public displayLicense = '';
 };
 
