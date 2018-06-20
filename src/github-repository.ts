@@ -341,7 +341,7 @@ export class GithubRepository extends Seed {
           <a href="${this.repo.owner.htmlUrl}" target="_blank" rel="noopener">${this.repo.owner.login}</a> /
           <a href="${this.repo.htmlUrl}" target="_blank" rel="noopener">${this.repo.name}</a>
         </span>
-        <span class="logo item"><a href="https://github.com" target="_blank" rel="noopener">${this.logo}</a></span>
+        <span class="logo item"><a href="${this.repo.htmlUrl}" target="_blank" rel="noopener">${this.logo}</a></span>
       </div>
     `;
   }
