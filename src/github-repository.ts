@@ -221,7 +221,7 @@ export class GithubRepository extends Seed {
         }
 
         .background-masker {
-          background: #FAFAFA;
+          background: #FFFFFF;
           position: absolute;
         }
 
