@@ -73,17 +73,15 @@ export class GithubRepository extends Seed {
     return html`
       <style>
         :host {
-          box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0 ,0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
-        }
-
-        * {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+          border: 1px solid #E0E0E0;
+          border-radius: 8px;
         }
 
         .content {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
           padding-bottom: 16px;
-          background-color: #FAFAFA;
-          color: #212121;
+          background-color: #FFFFFF;
+          color: #000000;
           display: flex;
           flex-direction: column;
         }
@@ -110,7 +108,7 @@ export class GithubRepository extends Seed {
         #clone {
           padding: 0 16px;
           margin: 0;
-          background-color: #e0e0e0;
+          background-color: #E0E0E0;
           overflow: hidden;
         }
 
