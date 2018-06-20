@@ -144,12 +144,12 @@ export class GithubRepository extends Seed {
           margin: 12px 2px;
         }
 
-        // Workaround for ShadyDOM polyfill
+        /* Workaround for ShadyDOM polyfill */
         [slot="images"] {
           width: 100%;
         }
 
-        // Workaround for ShadyDOM polyfill
+        /* Workaround for ShadyDOM polyfill */
         #badges-slot a {
           margin: 12px 2px;
         }
@@ -185,7 +185,7 @@ export class GithubRepository extends Seed {
           margin-left: 8px;
         }
 
-        // loading
+        /* loading */
 
         #loader {
           margin 24px;
