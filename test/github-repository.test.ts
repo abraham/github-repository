@@ -49,7 +49,7 @@ describe('<github-repository>', () => {
       expect(links[0].innerText).to.eq('abraham');
       expect(links[1].href).to.eq('https://github.com/abraham/twitter-status');
       expect(links[1].innerText).to.eq('twitter-status');
-      expect(links[2].href).to.eq('https://github.com/');
+      expect(links[2].href).to.eq('https://github.com/abraham/twitter-status');
       expect(links[2].querySelector('svg').getAttribute('aria-label')).to.eq('GitHub');
     });
 
@@ -102,7 +102,7 @@ describe('<github-repository>', () => {
       expect(links[0].innerText).to.eq('abraham');
       expect(links[1].href).to.eq('https://github.com/abraham/empty');
       expect(links[1].innerText).to.eq('empty');
-      expect(links[2].href).to.eq('https://github.com/');
+      expect(links[2].href).to.eq('https://github.com/abraham/empty');
       expect(links[2].querySelector('svg').getAttribute('aria-label')).to.eq('GitHub');
     });
 
