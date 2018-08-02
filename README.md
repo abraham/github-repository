@@ -6,6 +6,7 @@
 [![Linux Build Status](https://img.shields.io/travis/abraham/github-repository.svg?style=flat&label=linux)](https://travis-ci.org/abraham/github-repository)
 [![Windows Build Status](https://img.shields.io/appveyor/ci/abraham/github-repository.svg?style=flat&label=windows)](https://ci.appveyor.com/project/abraham/github-repository)
 [![Dependency Status](https://david-dm.org/abraham/github-repository.svg?style=flat)](https://david-dm.org/abraham/github-repository)
+[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/github-repository.svg?style=flat&colorB=4bc524)](https://bundlephobia.com/result?p=github-repository)
 
 Install
 ----
