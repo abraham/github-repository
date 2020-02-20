@@ -41,6 +41,6 @@
     "approximate-number": "2.0.0"
   },
   "devDependencies": {
-    "@nutmeg/cli": "0.15.0"
+    "@nutmeg/cli": "0.17.0"
   }
 }
