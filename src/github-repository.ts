@@ -1,11 +1,11 @@
-import { Seed, Property, html, svg, TemplateResult } from '@nutmeg/seed';
+import { Seed, property, html, svg, TemplateResult } from '@nutmeg/seed';
 import approximateNumber from 'approximate-number';
 
 import { Cache } from './cache';
 import { EmptyRepo, Repo, RepoData } from './repo';
 
 export class GithubRepository extends Seed {
-  @Property() public ownerRepo: string = '';
+  @property({ type: String }) public ownerRepo: string = '';
 
   private _repo: Repo | EmptyRepo = new EmptyRepo();
   private cache: Cache;
