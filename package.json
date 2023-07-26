@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@nutmeg/seed": "0.17.0",
-    "approximate-number": "2.1.0"
+    "approximate-number": "2.1.1"
   },
   "devDependencies": {
     "@nutmeg/cli": "0.17.0"
